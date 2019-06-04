@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>AS9370 IPv6 Looking Glass - SAKURA Internet</title>
+</head>
+<body>
+<header>
+AS {{ .as }} IPv6 Looking Glass
+</header>
+<form method="get" action="/lg">
+<ul>
+<li><input type=radio value=6 name=query>show ip bgp</li>
+<li><input type=radio value=6 name=query>show ip bgp as</li>
+<li><input type=radio value=6 name=query>show ip bgp source-as</li>
+<li><input type=radio value=6 name=query>show ip bgp transit-as</li>
+<li><input type=radio value=6 name=query>show ip bgp peer-as</li>
+<li><input type=radio value=6 name=query>show ip bgp empty-as</li>
+<li><input type=radio value=6 name=query>show ip bgp summary</li>
+<li><input type=radio value=6 name=query>show ip bgp detail</li>
+<li><input type=radio value=6 name=query>show ip bgp in</li>
+<li><input type=radio value=6 name=query>show ip bgp out</li>
+<li><input type=radio value=6 name=query>show ip bgp memory</li>
+<li><input type=radio value=6 name=query>show neighbor</li>
+<li><input type=radio value=6 name=query>show nexthop</li>
+<li><input type=radio value=6 name=query>show version</li>
+<li><input type=radio value=6 name=query>traceroute</li>
+<li><input type=radio value=6 name=query>ping</li>
+<li><input type=radio value=6 name=query>traceroute6</li>
+<li><input type=radio value=6 name=query>ping6</li>
+<li><input type=radio value=6 name=query>help</li>
+</ul>
+<input type='text' name='req'/>
+<input type='submit' value='submit'/>
+</form>
+
+{{ .result }}
+
+<hr>
+<footer>bgp4</footer>
+</body>
+</html>
