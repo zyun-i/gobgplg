@@ -1,22 +1,37 @@
 <html>
   <head>
     <title>AS{{ .as }} Looking Glass</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
   <body>
     <header>AS{{ .as }} Looking Glass</header>
     <hr>
     <form method="get" action="/lg">
       <ul>
-        <li><input type=radio value=0 name=query checked>show summary</li>
-        <li><input type=radio value=1 name=query>show ip bgp</li>
+        <li><input type=radio value=0 name=query {{if eq .checked "0"}}checked{{end}}>bgpctl show</li>
+        <li><input type=radio value=1 name=query {{if eq .checked "1"}}checked{{end}}>bgpctl show neighbor</li>
+        <li><input type=radio value=2 name=query {{if eq .checked "2"}}checked{{end}}>bgpctl show nexthop</li>
+        <li><input type=radio value=3 name=query {{if eq .checked "3"}}checked{{end}}>bgpctl show ip bgp</li>
+        <li><input type=radio value=4 name=query {{if eq .checked "4"}}checked{{end}}>bgpctl show ip bgp {argument}</li>
+        <li><input type=radio value=5 name=query {{if eq .checked "5"}}checked{{end}}>bgpctl show ip bgp as {argument}</li>
+        <li><input type=radio value=6 name=query {{if eq .checked "6"}}checked{{end}}>ping -c4 -i0.5 {argument}</li>
+        <li><input type=radio value=7 name=query {{if eq .checked "7"}}checked{{end}}>traceroute -w2 -q2 -m25 {argument}</li>
+        <li><input type=radio value=8 name=query {{if eq .checked "8"}}checked{{end}}>ping6 -c4 -i0.5 {argument}</li>
+        <li><input type=radio value=9 name=query {{if eq .checked "9"}}checked{{end}}>traceroute6 -w2 -q2 -m25 {argument}</li>
       </ul>
-      <input type='text' name='req'/>
-      <input type='submit' value='submit'/>
+      <p>
+        argument: <input type="text" name="arg" value="{{ .arg }}">
+      </p>
+      <p> 
+        <input type="submit" value="Submit">
+        | 
+        <input type=reset value=Reset>
+      </p>
     </form>
     <pre>
 {{ .result }}
     </pre>
     <hr>
-    <footer>gobgplg</footer>
+    <footer>gobgplg powerd by Go and OpenBGPD</footer>
   </body>
 </html>
